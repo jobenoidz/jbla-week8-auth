@@ -1,13 +1,32 @@
 {
   "project_info": {
-    "project_number": "97869778981",
-    "project_id": "week9-user-authentication",
-    "storage_bucket": "week9-user-authentication.appspot.com"
+    "project_number": "417417618628",
+    "project_id": "cmsc23-todo-jblaguirre",
+    "storage_bucket": "cmsc23-todo-jblaguirre.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:97869778981:android:ed5cc80da6f5f59089efcc",
+        "mobilesdk_app_id": "1:417417618628:android:b95c002e44246c3e96d591",
+        "android_client_info": {
+          "package_name": "com.example.week7_networking_discussion"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGjdnT-316NQjOZxbxYM6mOYGdUy0Ujas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417417618628:android:b2c935b9f003459296d591",
         "android_client_info": {
           "package_name": "com.example.week9_authentication"
         }
@@ -15,7 +34,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC6heRq0Ed-GWb_Dnfi67VRz4QTeJRHp08"
+          "current_key": "AIzaSyBGjdnT-316NQjOZxbxYM6mOYGdUy0Ujas"
         }
       ],
       "services": {

@@ -13,6 +13,8 @@ class _SignUpState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
+  String? fname;
+  String? lname;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class _SignUpState extends State<SignUpPage> {
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [heading, emailField, passwordField, submitButton],
+                children: [heading, emailField, passwordField, fnameField, lnameField, submitButton],
               ),
             )),
       ),
@@ -63,12 +65,50 @@ class _SignUpState extends State<SignUpPage> {
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
               label: Text("Password"),
-              hintText: "At least 8 characters"),
+              hintText: "At least 6 characters"),
           obscureText: true,
           onSaved: (value) => setState(() => password = value),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "Please enter a valid password";
+            } else if (value.length < 6) {
+              return "Minimum of 6 characters required";
+            }
+            return null;
+          },
+        ),
+      );
+
+  Widget get fnameField => Padding(
+        padding: const EdgeInsets.only(bottom: 30),
+        child: TextFormField(
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              label: Text("First Name"),
+              hintText: "Enter first name"),
+          obscureText: true,
+          onSaved: (value) => setState(() => fname = value),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please enter first name";
+            }
+            return null;
+          },
+        ),
+      );
+
+   Widget get lnameField => Padding(
+        padding: const EdgeInsets.only(bottom: 30),
+        child: TextFormField(
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+              label: Text("Last Name"),
+              hintText: "Enter last name"),
+          obscureText: true,
+          onSaved: (value) => setState(() => lname = value),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please enter last name";
             }
             return null;
           },
