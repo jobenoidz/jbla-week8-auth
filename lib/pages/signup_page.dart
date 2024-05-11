@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:week9_authentication/models/user_model.dart';
 import '../providers/auth_provider.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -27,7 +28,14 @@ class _SignUpState extends State<SignUpPage> {
               key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [heading, emailField, passwordField, fnameField, lnameField, submitButton],
+                children: [
+                  heading,
+                  emailField,
+                  fnameField,
+                  lnameField,
+                  passwordField,
+                  submitButton
+                ],
               ),
             )),
       ),
@@ -65,14 +73,12 @@ class _SignUpState extends State<SignUpPage> {
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
               label: Text("Password"),
-              hintText: "At least 6 characters"),
+              hintText: "At least 8 characters"),
           obscureText: true,
           onSaved: (value) => setState(() => password = value),
           validator: (value) {
             if (value == null || value.isEmpty) {
               return "Please enter a valid password";
-            } else if (value.length < 6) {
-              return "Minimum of 6 characters required";
             }
             return null;
           },
@@ -86,7 +92,6 @@ class _SignUpState extends State<SignUpPage> {
               border: OutlineInputBorder(),
               label: Text("First Name"),
               hintText: "Enter first name"),
-          obscureText: true,
           onSaved: (value) => setState(() => fname = value),
           validator: (value) {
             if (value == null || value.isEmpty) {
@@ -97,18 +102,17 @@ class _SignUpState extends State<SignUpPage> {
         ),
       );
 
-   Widget get lnameField => Padding(
+  Widget get lnameField => Padding(
         padding: const EdgeInsets.only(bottom: 30),
         child: TextFormField(
           decoration: const InputDecoration(
               border: OutlineInputBorder(),
               label: Text("Last Name"),
               hintText: "Enter last name"),
-          obscureText: true,
           onSaved: (value) => setState(() => lname = value),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "Please enter last name";
+              return "Please enterlast name";
             }
             return null;
           },
@@ -119,13 +123,13 @@ class _SignUpState extends State<SignUpPage> {
       onPressed: () async {
         if (_formKey.currentState!.validate()) {
           _formKey.currentState!.save();
-          await context
-              .read<UserAuthProvider>()
-              .authService
-              .signUp(email!, password!);
+
+          Deets temp = Deets(email: email!, fname: fname!, lname: lname!);
+          context.read<UserAuthProvider>().saveUser(temp);
+          context.read<UserAuthProvider>().signUp(email!, password!);
 
           // check if the widget hasn't been disposed of after an asynchronous action
-          if (mounted) Navigator.pop(context);
+          Navigator.pop(context);
         }
       },
       child: const Text("Sign Up"));
